@@ -1,9 +1,8 @@
-<from class="navbar-form navbar-center" role="search">
-	<div class="form-group">
-		<input type="text" class="form-control" placeholder="Username">
-	</div>
-	<div class= "form-group">
-		<input type="text" class="form-control" placeholder="Password">
-	</div>
-	<button type="submit" class="btn btn-default">submit</button>
-</from>>
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+
+<?php
+class home extends CI_Controller{
+	function index(){
+		$this->load->view('h')
+	}
+}
