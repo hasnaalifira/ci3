@@ -51,42 +51,48 @@ http://www.templatemo.com/tm-488-classic
                                 </li>
                             </ul>                       
                         </div>
-                        
+                         
                     </nav>  
 
                 </div>                                  
             </div>            
         </div>
 
-       <div class="tm-about-img-container"> 
+        
             
         </div>
 
         <section class="tm-section">
             <div class="container-fluid">
-                <div class="row">
             
                 
-            
-                <?php foreach ($artikel as $key): ?>
-                
-                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"> 
-                        <div class="tm-content-box">
-                             <h3 class="tm-margin-b-20 tm-gold-text"> <?php echo $key->judul ?></h3>
-                                <a href="<?php echo base_url(). 'blog/view/'. $key->id ?>"  style="color: black;">
-                                    <img src="<?php echo base_url (). 'img/'. $key->image?>" alt="Image" class="tm-margin-b-30 img-fluid"   width="250" height="250">
-                                        <br>
-                                        <p class="tm-margin-b-20"><?php echo $key->ctn ?></p>
-                                        <a href="<?php echo base_url(). 'blog/view/'. $key->id ?>" class="tm-btn text-uppercase">Read More</a>         
-                         </div>
-                     </div>    
-                <?php endforeach ?>
-                           
+               
+ <?php foreach ($view as $key): ?>
+        <div class="container">
+            <table>
+                <tr class="text-center">
+                    <td>
+                        <center><h1><b><?php echo $key->judul; ?></b></h1></center>
+                        </td>
+                </tr>
+                <tr>
+                    <td class="text-center">
+                        <center><img src="../../img/<?php echo $key->image;?>" alt="Image" width="500" height="400"></center>
 
-                       
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-justify">
+                        <?php echo $key->content; ?>
+                    </td>
+                </tr>
 
-                    
-                </div> <!-- row -->
+            </table>
+        </div>
+        <?php endforeach ?>
+              <br>  
+        <a href="<?php echo site_url('blog/'); ?>" class="tm-btn text-uppercase">Back</a>   
+
 
             </div>
         </section>
