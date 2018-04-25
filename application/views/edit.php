@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Tambah Data</title>
+    <title>Edit Data</title>
 <!--
 Classic Template
 http://www.templatemo.com/tm-488-classic
@@ -81,22 +81,29 @@ http://www.templatemo.com/tm-488-classic
                         <section>
                             <h3 class="tm-gold-text tm-form-title">Edit Data</h3>
                             
-                            <form action="<?php echo site_url('blog/update/'.$a) ?>" method="POST" class="tm-contact-form">
+
+<?php 
+    echo form_open_multipart('blog/update/'.$a);
+?>
+
+                            <?php echo validation_errors(); ?>
+
+                            <form  method="POST" class="tm-contact-form">
                                                             
 
                                 <div class="form-group">
-                                    <input type="text" name="judul" value="<?php echo $judul ?>" class="form-control" placeholder="Judul"  required/>
+                                    <input type="text" name="judul" value="<?php echo $judul ?>" class="form-control" placeholder="Judul"  />
                                     
                                 </div>
 
 
                                 <div class="form-group">
-                                    <textarea type="text" name="content"  class="form-control" rows="6" placeholder="Content" required><?php echo $content ?></textarea>
+                                    <textarea type="text" name="content"  class="form-control" rows="6" placeholder="Content" ><?php echo $content ?></textarea>
                                     
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="file" name="image" value="<?php echo $image ?>" class="form-control" placeholder="Choose file"  required/>
+                                    <input type="file" name="image" value="<?php echo $image ?>" class="form-control" placeholder="Choose file" />
                                 </div>
                             
                                 <button type="submit" name="simpan" value="simpan" class="tm-btn">Submit</button>                          
@@ -109,24 +116,10 @@ http://www.templatemo.com/tm-488-classic
                 </div>
             </div> 
 
-
-
-
-
-
-
-
-
-
-
         </section>
                         
-                      
-                 
 
-        
-                </footer>
-
+</footer>
 
         <link rel="stylesheet" href="<?php echo base_url('a/css/bootstrap.min.css');?>" >
         <!-- load JS files -->

@@ -62,8 +62,9 @@ http://www.templatemo.com/tm-488-classic
         <section class="tm-section">
             <div class="container">
         <?php
-        echo form_open('blog/tambah', array('enctype'=>'multipart/form-data')); 
+        echo form_open_multipart('blog/tambah', array('class' => 'needs-validation', 'novalidate' => ''));
        ?>
+
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
  
@@ -72,51 +73,40 @@ http://www.templatemo.com/tm-488-classic
                             
                             <form action="index.html" method="post" class="tm-contact-form">
                                                             
-
+<?php echo validation_errors(); ?>
                                 <div class="form-group">
-                                    <input type="text" name="input_judul" value="<?php echo set_value('input_judul'); ?>" class="form-control" placeholder="Judul"  required/>
+                                    <input type="text" name="input_judul" value="<?php echo set_value('input_judul'); ?>" class="form-control" placeholder="Judul" />
+
                                     
                                 </div>
 
 
                                 <div class="form-group">
-                                    <textarea type="text" name="input_content" class="form-control" rows="6" placeholder="Content" required></textarea>
+                                    <textarea type="text" name="input_content" value="<?php echo set_value('input_content'); ?>" class="form-control" rows="6" placeholder="Content" ></textarea>
                                     
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="file" name="input_gambar" class="form-control" placeholder="Choose file"  required/>
+                                    <input type="file" name="input_gambar" value="<?php echo set_value('input_image'); ?>" class="form-control" placeholder="Choose file"  required/>
                                 </div>
                             
                                 <button type="submit" name="simpan" value="simpan" class="tm-btn">Submit</button>                          
                             </form>  
                             <br>
                             <br>
-                            <a href="<?php echo site_url('blog/'); ?>" class="tm-btn btn-danger">Back</a>   
+                            <a href="<?php echo site_url('blog/'); ?>" class="tm-btn btn-danger">Back</a>  
+
+
+
                         </section>
                     </div>
                 </div>
             </div> 
 
 
-
-
-
-
-
-
-
-
-
         </section>
                         
-                      
-                 
-
-        
-                </footer>
-
-
+</footer>
         <link rel="stylesheet" href="<?php echo base_url('a/css/bootstrap.min.css');?>" >
         <!-- load JS files -->
         <script src="<?php echo base_url('a/js/jquery-1.11.3.min.js');?>"></script>             <!-- jQuery (https://jquery.com/download/) -->

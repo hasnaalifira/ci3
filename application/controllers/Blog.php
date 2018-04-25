@@ -22,6 +22,19 @@ class Blog extends CI_Controller {
 		$this->load->model('artikel');
 		$data = array();
 
+		$this->load->helper('form');
+	    $this->load->library('form_validation');
+	    $this->form_validation->set_rules('input_judul', 'title', 'required');
+	    $this->form_validation->set_rules('input_content', 'content', 'required');
+	    $this->form_validation->set_rules('input_image', 'image', 'required');
+
+	    if ($this->form_validation->run() == FALSE)
+	    {
+	        $this->load->view('tambah');
+
+	    } else {
+
+
 		if ($this->input->post('simpan')) 
 		{
 			$upload = $this->artikel->upload();
@@ -36,14 +49,18 @@ class Blog extends CI_Controller {
 			}
 		}
 			$this->load->view('tambah', $data);
+		}
 		
 	}
 
 
 		public function Form_Edit($a)
 	{
+
+
 		$this->data['update_data']=$this->artikel->update_data('blog',$a);
 		$this->load->view('edit', $this->data);
+	
 	}
 
 		public function delete($a)
@@ -55,6 +72,19 @@ class Blog extends CI_Controller {
 
 	public function update($a)
 	{
+
+
+		$this->load->helper('form');
+	    $this->load->library('form_validation');
+	    $this->form_validation->set_rules('judul', 'title', 'required');
+	    $this->form_validation->set_rules('content', 'content', 'required');
+	    $this->form_validation->set_rules('image', 'image', 'required');
+
+	    if ($this->form_validation->run() == FALSE)
+	    {
+	        $this->load->view('edit');
+
+	    } else {
 
 	$judul= $_POST['judul'];
 	$content = $_POST['content'];
@@ -70,7 +100,8 @@ class Blog extends CI_Controller {
  	}else{
  		echo 'Gagal disimpan';
  	}
+ 
 }
-
+}
 
 }
