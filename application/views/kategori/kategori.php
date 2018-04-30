@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Blog</title>
+    <title>Kategori</title>
 <!--
 Classic Template
 http://www.templatemo.com/tm-488-classic
@@ -46,10 +46,13 @@ http://www.templatemo.com/tm-488-classic
                                 <li class="nav-item">
                                     <a href="<?php echo site_url('about/'); ?>" class="nav-link">About</a>
                                 </li>
-                                <li class="nav-item active">
-                                    <a href="<?php echo site_url('blog/'); ?>" class="nav-link">Blog</a>
+                                <li class="nav-item ">
+                                    <a href="<?php echo site_url('blog/'); ?>" class="nav-link">Artikel</a>
                                 </li>
-                            </ul>                       
+                                <li class="nav-item active">
+                                    <a href="<?php echo site_url('kategori/'); ?>" class="nav-link">Kategori</a>
+                                </li>
+                            </ul>                        
                         </div>
                         
                     </nav>  
@@ -63,31 +66,33 @@ http://www.templatemo.com/tm-488-classic
         
         
 
-        <section class="tm-section">
+<section class="tm-section">
+    <?php if( !empty($categories) ) : ?>
             <div class="container-fluid">
-                <a href="<?php echo site_url('blog/tambah/'); ?>" class="tm-btn text-uppercase">Tambah Data</a>
+                <a href="<?php echo site_url('kategori/create/'); ?>" class="tm-btn text-uppercase">Tambah Kategori</a>
                 <br>
                 <br>
                 <br>
                 
-                <div class="row">
-            <?php foreach ($artikel as $key): ?> 
-               
+                <div class="row"> 
 
-            
+                    <?php
+                       
+                        foreach ($categories as $key) :
+                    ?>
+               
                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"> 
                         <div class="tm-content-box">
-                             <h3 class="tm-margin-b-20 tm-gold-text"> <?php echo $key->judul ?></h3>
-                                <a href="<?php echo base_url(). 'blog/view/'. $key->id ?>"  style="color: black;">
-                                    <img src="<?php echo base_url (). 'img/'. $key->image?>" alt="Image" class="tm-margin-b-30 img-fluid"   width="250" height="250">
-                                        <br>
-                                       <!-- <p class="tm-ma rgin-b-20"><?php echo $key->ctn ?></p> -->
-                                        <a href="<?php echo base_url(). 'blog/view/'. $key->id ?>" class="tm-btn text-uppercase">Read More</a>    
+                             <h3 class="tm-margin-b-20 tm-gold-text"> <?php echo $key->cat_name ?></h3>
+                                
+                                   
+                                       
+                <a href="<?php echo base_url('kategori/artikel/'.$key->cat_id) ?>" class="btn btn-success">Lihat Artikel</a>    
                                         <br> 
                                         <br>    
-                <a href="<?php echo site_url('blog/Form_Edit/'. $key->id); ?>" class="btn btn-sm btn-danger">edit</a>
+                <a href="<?php echo base_url(). 'kategori/edit/' . $key->cat_id ?>" class="btn btn-sm btn-danger">edit</a>
                 <!--<a href='blog/edit/<?php echo $key->id ?>' class='btn btn-sm btn-danger'>edit</a> -->
-                <a href="<?php echo base_url(). 'blog/delete/' . $key->id ?>" class="btn btn-sm btn-danger">Hapus</a>
+                <a href="<?php echo base_url(). 'kategori/delete/' . $key->cat_id ?>" class="btn btn-sm btn-danger">Hapus</a>
 
                          </div>
                      </div>    
@@ -100,6 +105,9 @@ http://www.templatemo.com/tm-488-classic
                 </div> <!-- row -->
 
             </div>
+                    <?php else : ?>
+        <p>Belum ada data bosque.</p>
+        <?php endif; ?>
         </section>
          
         

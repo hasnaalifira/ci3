@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -47,55 +47,74 @@ http://www.templatemo.com/tm-488-classic
                                     <a href="<?php echo site_url('about/'); ?>" class="nav-link">About</a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a href="<?php echo site_url('blog/'); ?>" class="nav-link">Blog</a>
+                                    <a href="<?php echo site_url('blog/'); ?>" class="nav-link">Artikel</a>
                                 </li>
-                            </ul>                       
+                                <li class="nav-item">
+                                    <a href="<?php echo site_url('kategori/'); ?>" class="nav-link">Kategori</a>
+                                </li>
+                            </ul>                        
                         </div>
-                         
+                        
                     </nav>  
 
                 </div>                                  
             </div>            
         </div>
 
+
+       
         
-            
-        </div>
+        
 
         <section class="tm-section">
             <div class="container-fluid">
-            
+
+<?php if( !empty($artikel) ) : ?>
+                <a href="<?php echo site_url('blog/tambah/'); ?>" class="tm-btn text-uppercase">Tambah Artikel</a>
+                <br>
+                <br>
+                <br>
                 
-               
- <?php foreach ($view as $key): ?>
-        <div class="container">
-            <table>
-                <tr class="text-center">
-                    <td>
-                        <center><h1><b><?php echo $key->judul; ?></b></h1></center>
-                        </td>
-                </tr>
-                <tr>
-                    <td class="text-center">
-                        <center><img src="../../img/<?php echo $key->image;?>" alt="Image" width="500" height="400"></center>
+                <div class="row">
+                    <?php
+                        foreach ($artikel as $key) :
+                    ?>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"> 
+                        <div class="tm-content-box">
+                             <h3 class="tm-margin-b-20 tm-gold-text"><?php echo ($key->judul) ?></h3>
+                                
+                                    
+                    <?php if( $key->image ) : ?>
+                            <img src="<?php echo base_url() .'img/'. $key->image ?>" alt="Image" class="tm-margin-b-30 img-fluid"   width="250" height="250">
 
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-justify">
-                        <?php echo $key->content; ?>
-                    </td>
-                </tr>
+                    <?php ; else : ?>
+                            <img class="card-img-top" data-src="holder.js/100px190?theme=thumb&bg=eaeaea&fg=aaa&text=Thumbnail" alt="Card image cap">
+                            <?php endif; ?>
+                                   
 
-            </table>
-        </div>
-        <?php endforeach ?>
-              <br>  
-        <a href="<?php echo site_url('blog/'); ?>" class="tm-btn text-uppercase">Back</a>   
+                                        <br>
+                            <small class="text-success text-uppercase"><?php echo $key->cat_name ?></small>
+                            <br>
+                                       
+                <a href="<?php echo base_url(). 'blog/view/'. $key->id ?>" class="tm-btn text-uppercase">Read More</a>    
+                                        <br> 
+                                        <br>    
+                <a href="<?php echo base_url('blog/edit/'. $key->id); ?>" class="btn btn-sm btn-danger">edit</a>
+                <a href="<?php echo base_url(). 'blog/delete/' . $key->id ?>" class="btn btn-sm btn-danger">Hapus</a>
 
+                         </div>
+                     </div>    
+               <?php endforeach; ?> 
+    
+                </div> <!-- row -->
 
+        <?php else : ?>
+        <p>Belum ada data bosque.</p>
+        <?php endif; ?>
             </div>
+              
         </section>
+         
         
         <footer class="tm-footer">
             <div class="container-fluid">

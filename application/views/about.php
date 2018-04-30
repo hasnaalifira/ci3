@@ -49,7 +49,10 @@ http://www.templatemo.com/tm-488-classic
                                     <a href="<?php echo site_url('about/'); ?>" class="nav-link">About</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?php echo site_url('blog/'); ?>" class="nav-link">Blog</a>
+                                    <a href="<?php echo site_url('blog/'); ?>" class="nav-link">Artikel</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?php echo site_url('kategori/'); ?>" class="nav-link">Kategori</a>
                                 </li>
                             </ul>                        
                         </div>

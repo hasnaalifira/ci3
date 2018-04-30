@@ -5,18 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Home</title>
+    <title>Blog</title>
 <!--
 Classic Template
 http://www.templatemo.com/tm-488-classic
 -->
-
-
-
     <!-- load stylesheets -->
-    <link rel="stylesheet" href="<?php echo base_url('a/css/bootstrap.min.css');?>" ><!-- Google web font "Open Sans" -->
+     
+    <link rel="stylesheet" href="<?php echo base_url('a/css?family=Open+Sans:300,400');?>" >  <!-- Google web font "Open Sans" -->
     <link rel="stylesheet" href="<?php echo base_url('a/css/bootstrap.min.css');?>" >                                     <!-- Bootstrap style -->
-    <link rel="stylesheet" href="<?php echo base_url('a/css/templatemo-style.css');?>">                                   <!-- Templatemo style -->
+<link rel="stylesheet" href="<?php echo base_url('a/css/templatemo-style.css');?>">                                 <!-- Templatemo style -->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,9 +29,7 @@ http://www.templatemo.com/tm-488-classic
         <div class="tm-header">
             <div class="container-fluid">
                 <div class="tm-header-inner">
-                    
                     <a href="#" class="navbar-brand tm-site-name"><img src="<?php echo site_url('a/img/logo.png'); ?>" width="60px" height="60px"></a>
-
                     
                     <!-- navbar -->
                     <nav class="navbar tm-main-nav">
@@ -44,65 +40,89 @@ http://www.templatemo.com/tm-488-classic
                         
                         <div class="collapse navbar-toggleable-sm" id="tmNavbar">
                             <ul class="nav navbar-nav">
-                                <li class="nav-item active">
+                                <li class="nav-item">
                                     <a href="<?php echo site_url('home/'); ?>" class="nav-link">Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?php echo site_url('about/'); ?>" class="nav-link">About</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item active">
                                     <a href="<?php echo site_url('blog/'); ?>" class="nav-link">Artikel</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?php echo site_url('kategori/'); ?>" class="nav-link">Kategori</a>
                                 </li>
-                            </ul>                        
+                            </ul>                       
                         </div>
-                        
+                         
                     </nav>  
 
                 </div>                                  
             </div>            
         </div>
 
-        <div class="tm-home-img-container">
-            <img src="img/tm-home-img.jpg" alt="Image" class="hidden-lg-up img-fluid">
-        </div> 
+        
+            
+        </div>
 
         <section class="tm-section">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-xs-center">
-                        <h2 class="tm-gold-text tm-title">Introduction</h2>
-                        <p class="tm-subtitle">Nama saya Hasna Alifira saya kuliah di Politeknik Negeri Malang di jurusan Teknologi Informasi prodi D3 Manajemen Informatika . </p>
-                    </div>
-                </div>
-           
+            
+                
+               
+ <?php foreach ($view as $key): ?>
+        <div class="container">
+            <table>
+                <tr class="text-center">
+                    <td>
+                        <center><h1><b><?php echo $key->judul; ?></b></h1></center>
+                        </td>
+                </tr>
+                <tr>
+                    <td class="text-center">
+                        <center><img src="../../img/<?php echo $key->image;?>" alt="Image" width="500" height="400"></center>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-justify">
+                        <?php echo $key->content; ?>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+        <?php endforeach ?>
+              <br>  
+        <a href="<?php echo site_url('blog/'); ?>" class="tm-btn text-uppercase">Back</a>   
+
 
             </div>
         </section>
         
         <footer class="tm-footer">
             <div class="container-fluid">
-              <div class="row">
+                <div class="row">
+                    
+                    
 
-                 </div>   
+
+
+                    <!-- Add the extra clearfix for only the required viewport 
+                        http://stackoverflow.com/questions/24590222/bootstrap-3-grid-with-different-height-in-each-item-is-it-solvable-using-only
+                    -->
+
 
                 <div class="row">
                     <div class="col-xs-12 tm-copyright-col">
-                      <p>
-
-                            </p>
                         <center><p class="tm-copyright-text">Copyright 2016 Your Company Name</p></center>
                     </div>
                 </div>
-
             </div>
         </footer>
 
-
-        <link rel="stylesheet" href="<?php echo base_url('a/css/bootstrap.min.css');?>" >
         <!-- load JS files -->
+
         <script src="<?php echo base_url('a/js/jquery-1.11.3.min.js');?>"></script>             <!-- jQuery (https://jquery.com/download/) -->
         <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script> <!-- Tether for Bootstrap, http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h --> 
         <script src="<?php echo base_url('a/js/bootstrap.min.js');?>"></script>                 <!-- Bootstrap (http://v4-alpha.getbootstrap.com/) -->

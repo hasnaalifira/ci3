@@ -46,7 +46,10 @@ http://www.templatemo.com/tm-488-classic
                                     <a href="<?php echo site_url('about/'); ?>" class="nav-link">About</a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a href="<?php echo site_url('blog/'); ?>" class="nav-link">Blog</a>
+                                    <a href="<?php echo site_url('blog/'); ?>" class="nav-link">Artikel</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?php echo site_url('kategori/'); ?>" class="nav-link">Kategori</a>
                                 </li>
                             </ul>                           
                         </div>
@@ -69,11 +72,12 @@ http://www.templatemo.com/tm-488-classic
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
  
                         <section>
-                            <h3 class="tm-gold-text tm-form-title">Tambahkan Data</h3>
+                            <h3 class="tm-gold-text tm-form-title">Tambahkan Artikel</h3>
                             
                             <form action="index.html" method="post" class="tm-contact-form">
                                                             
 <?php echo validation_errors(); ?>
+                    <?php echo (isset( $upload_error)) ? '<div class="alert alert-warning" role="alert">' .$upload_error. '</div>' : ''; ?>
                                 <div class="form-group">
                                     <input type="text" name="input_judul" value="<?php echo set_value('input_judul'); ?>" class="form-control" placeholder="Judul" />
 
@@ -86,8 +90,14 @@ http://www.templatemo.com/tm-488-classic
                                     
                                 </div>
 
+                    <div class="form-group">
+                        <label>Kategori</label>
+                        <?php echo form_dropdown('cat_id', $categories, set_value('cat_id'), 'class="form-control" required' ); ?>
+                    </div>
+
                                 <div class="form-group">
-                                    <input type="file" name="input_gambar" value="<?php echo set_value('input_image'); ?>" class="form-control" placeholder="Choose file"  required/>
+                                    <label for="thumbnail">
+                                    <input type="file" name="image" value="<?php echo set_value('image'); ?>" class="form-control" placeholder="Choose file"  required/>
                                 </div>
                             
                                 <button type="submit" name="simpan" value="simpan" class="tm-btn">Submit</button>                          

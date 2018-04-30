@@ -5,18 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Home</title>
+    <title>Tambah Data</title>
 <!--
 Classic Template
 http://www.templatemo.com/tm-488-classic
 -->
-
-
-
     <!-- load stylesheets -->
-    <link rel="stylesheet" href="<?php echo base_url('a/css/bootstrap.min.css');?>" ><!-- Google web font "Open Sans" -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  <!-- Google web font "Open Sans" -->
     <link rel="stylesheet" href="<?php echo base_url('a/css/bootstrap.min.css');?>" >                                     <!-- Bootstrap style -->
-    <link rel="stylesheet" href="<?php echo base_url('a/css/templatemo-style.css');?>">                                   <!-- Templatemo style -->
+    <link rel="stylesheet" href="<?php echo base_url('a/css/templatemo-style.css');?>">                               <!-- Templatemo style -->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,9 +28,7 @@ http://www.templatemo.com/tm-488-classic
         <div class="tm-header">
             <div class="container-fluid">
                 <div class="tm-header-inner">
-                    
                     <a href="#" class="navbar-brand tm-site-name"><img src="<?php echo site_url('a/img/logo.png'); ?>" width="60px" height="60px"></a>
-
                     
                     <!-- navbar -->
                     <nav class="navbar tm-main-nav">
@@ -44,19 +39,19 @@ http://www.templatemo.com/tm-488-classic
                         
                         <div class="collapse navbar-toggleable-sm" id="tmNavbar">
                             <ul class="nav navbar-nav">
-                                <li class="nav-item active">
+                                <li class="nav-item">
                                     <a href="<?php echo site_url('home/'); ?>" class="nav-link">Home</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item ">
                                     <a href="<?php echo site_url('about/'); ?>" class="nav-link">About</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?php echo site_url('blog/'); ?>" class="nav-link">Artikel</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item active">
                                     <a href="<?php echo site_url('kategori/'); ?>" class="nav-link">Kategori</a>
                                 </li>
-                            </ul>                        
+                            </ul>                           
                         </div>
                         
                     </nav>  
@@ -65,42 +60,53 @@ http://www.templatemo.com/tm-488-classic
             </div>            
         </div>
 
-        <div class="tm-home-img-container">
-            <img src="img/tm-home-img.jpg" alt="Image" class="hidden-lg-up img-fluid">
-        </div> 
+   
 
         <section class="tm-section">
-            <div class="container-fluid">
+            <div class="container">
+
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-xs-center">
-                        <h2 class="tm-gold-text tm-title">Introduction</h2>
-                        <p class="tm-subtitle">Nama saya Hasna Alifira saya kuliah di Politeknik Negeri Malang di jurusan Teknologi Informasi prodi D3 Manajemen Informatika . </p>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-8">
+ 
+                        <section>
+                            <h3 class="tm-gold-text tm-form-title">Tambahkan Kategori</h3>
+                            
+                            <form action="index.html" method="post" class="tm-contact-form">
+                                                    <?php    
+                        $this->form_validation->set_error_delimiters('<div class="alert alert-warning" role="alert">', '</div>');
+                    ?>
+                    <?php echo validation_errors(); ?>
+
+                    <?php echo form_open( 'kategori/tambah', array('class' => 'needs-validation', 'novalidate' => '') ); ?>
+                                                            
+                                <div class="form-group">
+                                    <input type="text" name="cat_name" value="<?php echo set_value('cat_name'); ?>" class="form-control" placeholder="Nama Kategori" />
+                                </div>
+
+
+                                <div class="form-group">
+                                    <textarea type="text" name="cat_description" value="<?php echo set_value('cat_description'); ?>" class="form-control" rows="6" placeholder="Deskripsi" ></textarea>
+
+                                </div>
+                            <button type="submit" name="simpan" value="simpan" class="tm-btn">Submit</button>
+                                                          
+                            </form>  
+                            <br>
+                            <br>
+                            <a href="<?php echo site_url('kategori/'); ?>" class="tm-btn btn-danger">Back</a>  
+
+
+
+                        </section>
                     </div>
                 </div>
-           
+            </div> 
 
-            </div>
+
         </section>
-        
-        <footer class="tm-footer">
-            <div class="container-fluid">
-              <div class="row">
-
-                 </div>   
-
-                <div class="row">
-                    <div class="col-xs-12 tm-copyright-col">
-                      <p>
-
-                            </p>
-                        <center><p class="tm-copyright-text">Copyright 2016 Your Company Name</p></center>
-                    </div>
-                </div>
-
-            </div>
-        </footer>
-
-
+                        
+</footer>
         <link rel="stylesheet" href="<?php echo base_url('a/css/bootstrap.min.css');?>" >
         <!-- load JS files -->
         <script src="<?php echo base_url('a/js/jquery-1.11.3.min.js');?>"></script>             <!-- jQuery (https://jquery.com/download/) -->
