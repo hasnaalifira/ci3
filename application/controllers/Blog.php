@@ -1,4 +1,4 @@
-<?php
+ <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Blog extends CI_Controller {
@@ -14,7 +14,31 @@ class Blog extends CI_Controller {
 
 	public function index()
 	{
-		$data['artikel'] = $this->artikel->get_all_artikel();
+		$limit_per_page = 6;
+
+		// URI segment untuk mendeteksi "halaman ke berapa" dari URL
+		$start_index = ( $this->uri->segment(3) ) ? $this->uri->segment(3) : 0;
+
+		// Dapatkan jumlah data 
+		$total_records = $this->artikel->get_total();
+		
+		if ($total_records > 0) {
+			// Dapatkan data pada halaman yg dituju
+			$data["artikel"] = $this->artikel->get_all_artikel($limit_per_page, $start_index);
+			
+			// Konfigurasi pagination
+			$config['base_url'] = base_url() . 'blog/index';
+			$config['total_rows'] = $total_records;
+			$config['per_page'] = $limit_per_page;
+			$config["uri_segment"] = 3;
+			
+			$this->pagination->initialize($config);
+				
+			// Buat link pagination
+			$data["links"] = $this->pagination->create_links();
+		}
+
+		// $data['artikel'] = $this->artikel->get_all_artikel();
 		$this->load->view('blog/blog', $data);
 	}
 
@@ -50,17 +74,17 @@ class Blog extends CI_Controller {
 				'min_length' 	=> '%s kurang panjang.',
 			));
 
-		$this->form_validation->set_rules('cat_description', 'Deskripsi', 'required|is_unique[categories.cat_name]',
-			array(
-				'required' 		=> 'Silahkan pilih %s terlebih dahulu.',
-				'is_unique' 	=> 'Deskripsi <strong>' .$this->input->post('cat_name'). '</strong> sudah ada.'
-			));
+		// $this->form_validation->set_rules('cat_description', 'Deskripsi', 'required|is_unique[categories.cat_name]',
+		// 	array(
+		// 		'required' 		=> 'Silahkan pilih %s terlebih dahulu.',
+		// 		'is_unique' 	=> 'Deskripsi <strong>' .$this->input->post('cat_name'). '</strong> sudah ada.'
+		// 	));
 
-		$this->form_validation->set_rules('image', 'Gambar', 'required|is_unique[blog.image]',
-			array(
-				'required' 		=> 'Silahkan masukkan %s terlebih dahulu.',
-				'is_unique' 	=> 'Gambar <strong>' .$this->input->post('image'). '</strong> sudah ada.'
-			));
+		// $this->form_validation->set_rules('image', 'Gambar', 'required|is_unique[blog.image]',
+		// 	array(
+		// 		'required' 		=> 'Silahkan masukkan %s terlebih dahulu.',
+		// 		'is_unique' 	=> 'Gambar <strong>' .$this->input->post('image'). '</strong> sudah ada.'
+		// 	));
 
 	    if ($this->form_validation->run() === FALSE)
 	    {

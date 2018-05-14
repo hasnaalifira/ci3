@@ -8,11 +8,24 @@ class Artikel extends CI_Model {
     	parent::__construct();
     }
 
-	public function get_all_artikel(){
+	public function get_all_artikel($limit = FALSE, $offset = FALSE)
+    {
+        if ( $limit ) {
+            $this->db->limit($limit, $offset);
+        }
+        
+        $this->db->order_by('blog.id', 'DESC');
+
         $this->db->join('categories', 'categories.cat_id = blog.jenis_cat');
 		$query = $this->db->get('blog');
 		return $query->result();
 	}	
+
+    public function get_total() 
+    {
+        // Dapatkan jumlah total artikel
+        return $this->db->count_all("blog");
+    }
 
 	public function get_single($id)
 	{
