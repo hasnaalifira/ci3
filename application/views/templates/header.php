@@ -54,10 +54,59 @@
                                 <li class="nav-item">
                                     <a href="<?php echo site_url('Datatables/view_json'); ?>" class="nav-link">Data Tables</a>
                                 </li>
-                            </ul>                        
+                                </ul>
+                                
+                             
+                <?php if(!$this->session->userdata('logged_in')) : ?>
+
+                    <div class="collapse navbar-toggleable-sm" id="tmNavbar">
+                    <ul class="nav navbar-nav">
+                    <li class="nav-item">
+                        <?php echo anchor('user/register', 'Register', array('class' => 'nav-link')); ?>
+                    </li>
+                    <li class="nav-item">
+                        <?php echo anchor('user/login', 'Login', array('class' => 'nav-link')); ?>
+                    </li>
+                    </ul> 
+                    </div>
+
+                <?php endif; ?>
+
+                <?php if($this->session->userdata('logged_in')) : ?>
+                    <div class="collapse navbar-toggleable-sm" id="tmNavbar">
+                    <ul class="nav navbar-nav">
+                    <li class="nav-item">
+                        <?php echo anchor('blog/tambah', 'Artikel Baru', array('class' => 'nav-link')); ?>
+                    </li>
+                    <li class="nav-item">
+                        <?php echo anchor('kategori/create', 'Kategori Baru', array('class' => 'nav-link')); ?>
+                    </li>
+                    <li class="nav-item">
+                        <?php echo anchor('user/logout', 'Logout', array('class' => 'nav-link')); ?>
+                    </li>
+                    </ul>
+                    </div>
+                <?php endif; ?>
+
                         </div>
                         
-                    </nav>  
+                    </nav> 
+
+
+        <?php if($this->session->flashdata('user_registered')): ?>
+            <?php echo '<div class="alert alert-success" role="alert">'.$this->session->flashdata('user_registered').'</div>'; ?>
+        <?php endif; ?>
+        <?php if($this->session->flashdata('login_failed')): ?>
+          <?php echo '<div class="alert alert-danger">'.$this->session->flashdata('login_failed').'</div>'; ?>
+        <?php endif; ?>
+
+        <?php if($this->session->flashdata('user_loggedin')): ?>
+          <?php echo '<div class="alert alert-success">'.$this->session->flashdata('user_loggedin').'</div>'; ?>
+        <?php endif; ?>
+
+         <?php if($this->session->flashdata('user_loggedout')): ?>
+          <?php echo '<div class="alert alert-success">'.$this->session->flashdata('user_loggedout').'</div>'; ?>
+        <?php endif; ?> 
 
                 </div>                                  
             </div>            

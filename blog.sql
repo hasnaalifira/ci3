@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 12 Mei 2018 pada 08.43
+-- Generation Time: 28 Mei 2018 pada 15.28
 -- Versi Server: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -71,6 +71,30 @@ INSERT INTO `categories` (`cat_id`, `cat_name`, `cat_description`) VALUES
 (2, 'Hiburan', 'blabla'),
 (3, 'News', 'ayeee');
 
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user`
+--
+
+CREATE TABLE `user` (
+  `id_user` int(11) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `alamat` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `user`
+--
+
+INSERT INTO `user` (`id_user`, `nama`, `alamat`, `email`, `username`, `password`) VALUES
+(1, 'aaaa', 'abc', 'a@gmail.com', 'aaaa', '74b87337454200d4d33f80c4663dc5e5'),
+(2, 'ccc', 'ccc', 'c@gmail.com', 'ccc', '9df62e693988eb4e1e1444ece0578579'),
+(3, 'pp', 'pp', 'p@gmail.com', 'pp', 'c483f6ce851c9ecd9fb835ff7551737c');
+
 --
 -- Indexes for dumped tables
 --
@@ -89,6 +113,12 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`cat_id`);
 
 --
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id_user`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -102,6 +132,11 @@ ALTER TABLE `blog`
 --
 ALTER TABLE `categories`
   MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
