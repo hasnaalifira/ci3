@@ -41,6 +41,18 @@
                                     <input type="password" name="password2" class="form-control" placeholder="Komfirmasi Password"/>
                                 </div>
 
+                                <div class="form-group">
+                                    <label for="">Pilih Paket Membership :</label>
+                                    <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="member" id="premiummember" value="2" checked>
+                                    <label class="form-check-label" for="goldmember">Premium Member</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="member" id="regulermember" value="3">
+                                    <label class="form-check-label" for="silvermember">Reguler Member</label>
+                                </div>
+                                </div>
+
                             
                                 <button type="submit" name="simpan" value="simpan" class="tm-btn">Daftar</button>  
                                 <?php echo form_close(); ?>                        

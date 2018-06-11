@@ -17,7 +17,7 @@ class User extends CI_Controller{
 
 		$this->form_validation->set_rules('nama', 'Nama', 'required');
 		$this->form_validation->set_rules('username', 'Username', 'required|is_unique[user.username]');
-		$this->form_validation->set_rules('alamat', 'Alamat', 'required|is_unique[user.alamat]');
+		$this->form_validation->set_rules('alamat', 'Alamat', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required|is_unique[user.email]');
 		$this->form_validation->set_rules('password', 'Password', 'required');
 		$this->form_validation->set_rules('password2', 'Konfirmasi Password', 'matches[password]');
@@ -62,7 +62,8 @@ class User extends CI_Controller{
 		$user_data = array(
 			'id_user' => $id_user,
 			'username' => $username,
-			'logged_in' => true
+			'logged_in' => true,
+			'level' => $this->user_model->get_user_level($id_user),
 		);
 
 		$this->session->set_userdata($user_data);
@@ -70,7 +71,8 @@ class User extends CI_Controller{
 		// Set message
 		$this->session->set_flashdata('user_loggedin', 'Anda berhasil login');
 
-		redirect('blog');
+		redirect('user/dashboard');
+
 	} else {
 		// Set message
 		$this->session->set_flashdata('login_failed', 'Login invalid');
@@ -91,6 +93,19 @@ class User extends CI_Controller{
 		$this->session->set_flashdata('user_loggedout', 'Anda berhasil log out');
 
 		redirect('user/login');
+	}
+
+	function dashboard()
+	{
+		
+		if(!$this->session->userdata('logged_in')) 
+			redirect('user/login');
+
+		$id_user = $this->session->userdata('id_user');
+		
+		$data['user'] = $this->user_model->get_user_details( $id_user );
+
+		$this->load->view('user/dashboard', $data, FALSE);
 	}
 
 }  

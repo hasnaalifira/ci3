@@ -13,7 +13,8 @@ class User_model extends CI_Model {
             'alamat' => $this->input->post('alamat'),
             'email' => $this->input->post('email'),
             'username' => $this->input->post('username'),
-            'password' => $enc_password
+            'password' => $enc_password,
+            'fk_id_level' => $this->input->post('member')
         );
 
         // Insert user
@@ -31,6 +32,34 @@ class User_model extends CI_Model {
 
         if($result->num_rows() == 1){
             return $result->row(0)->id_user;
+        } else {
+            return false;
+        }
+    }
+
+    function get_user_level($id_user)
+    {
+        $this->db->select('fk_id_level');
+        $this->db->where('id_user', $id_user);
+
+        $result = $this->db->get('user');
+
+        if($result->num_rows() == 1){
+            return $result->row(0);
+        } else {
+            return false;
+        }
+    }
+
+    function get_user_details($id_user)
+    {
+        $this->db->join('level', 'level.id_level = user.fk_id_level', 'left');
+        $this->db->where('id_user', $id_user);
+
+        $result = $this->db->get('user');
+
+        if($result->num_rows() == 1){
+            return $result->row(0);
         } else {
             return false;
         }
