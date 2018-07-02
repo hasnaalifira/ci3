@@ -63,7 +63,7 @@ class User extends CI_Controller{
 			'id_user' => $id_user,
 			'username' => $username,
 			'logged_in' => true,
-			'level' => $this->user_model->get_user_level($id_user),
+			'level' => $this->user_model->get_user_level($id_level),
 		);
 
 		$this->session->set_userdata($user_data);

@@ -39,23 +39,24 @@
                         
                         <div class="collapse navbar-toggleable-sm" id="tmNavbar">
                             <ul class="nav navbar-nav">
+                                
                                 <li class="nav-item">
                                     <a href="<?php echo site_url('home/'); ?>" class="nav-link">Home</a>
                                 </li>
+
                                 <li class="nav-item">
                                     <a href="<?php echo site_url('about/'); ?>" class="nav-link">About</a>
                                 </li>
+
+                                <?php if(!$this->session->userdata('logged_in') || $this->session->userdata('level') != 1) : ?>
                                 <li class="nav-item">
                                     <a href="<?php echo site_url('blog/'); ?>" class="nav-link">Artikel</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?php echo site_url('kategori/'); ?>" class="nav-link">Kategori</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="<?php echo site_url('Datatables/view_json'); ?>" class="nav-link">Data Tables</a>
-                                </li>
-                                </ul>
-                                
+                                <?php endif; ?>
+                               
                              
                 <?php if(!$this->session->userdata('logged_in')) : ?>
 
@@ -72,21 +73,26 @@
 
                 <?php endif; ?>
 
-                <?php if($this->session->userdata('logged_in')) : ?>
-                    <div class="collapse navbar-toggleable-sm" id="tmNavbar">
+        
+
+        <?php if($this->session->userdata('logged_in') && $this->session->userdata('level') == 1) : ?>
+            <div class="collapse navbar-toggleable-sm" id="tmNavbar">
                     <ul class="nav navbar-nav">
                     <li class="nav-item">
-                        <?php echo anchor('blog/tambah', 'Artikel Baru', array('class' => 'nav-link')); ?>
+                        <?php echo anchor('Datatables/view_json', 'Datatables', array('class' => 'nav-link')); ?>
                     </li>
-                    <li class="nav-item">
-                        <?php echo anchor('kategori/create', 'Kategori Baru', array('class' => 'nav-link')); ?>
-                    </li>
+                    
+                    </ul> 
+                    </div>
+        <?php endif; ?>  
+
+                <?php if($this->session->userdata('logged_in')) : ?>
                     <li class="nav-item">
                         <?php echo anchor('user/logout', 'Logout', array('class' => 'nav-link')); ?>
                     </li>
                     </ul>
                     </div>
-                <?php endif; ?>
+                <?php endif; ?> 
 
                         </div>
                         
